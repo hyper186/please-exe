@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Please.exe — a little less heat",
+  "short_name": "Please.exe",
+  "version": "0.1.0",
+  "description": "A private tone coach for Claude and ChatGPT. Live feedback, useful edits, and a tiny sense of humor. Optional Jev second opinions.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage"],
+  "optional_host_permissions": ["https://*/*", "http://127.0.0.1/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "Please.exe settings & playground", "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" } },
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "content_scripts": [{ "matches": ["https://claude.ai/*", "https://chatgpt.com/*"], "js": ["content.js"], "run_at": "document_idle", "all_frames": false }],
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" }
+}
